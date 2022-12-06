@@ -1,0 +1,5 @@
+# prometheus data director
+data/prometheus
+
+# grafana data director
+data/grafana
