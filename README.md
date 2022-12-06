@@ -12,6 +12,8 @@ docker run \
 
 Prometheus should be up and running on http://localhost:9090
 
+Find more here: https://prometheus.io/docs/prometheus/latest/installation/
+
 ## Install Graphana
 
 ```
@@ -21,6 +23,8 @@ docker run -d --name=grafana -p 3030:3000 grafana/grafana-enterprise
 The default username:password is admin:admin.
 Grafana should be available at http://localhost:3030
 
+Find more here: https://grafana.com/docs/grafana/latest/setup-grafana/configure-docker/
+
 ## Note:  
 > The above two steps can be replace using `docker-compose up -d`.
 
@@ -29,6 +33,8 @@ Grafana should be available at http://localhost:3030
 
 Find the IP address of the prometheus container.
 Then go to add a data source, add the URL `http://<IP Address>:9090` (e.g., `http:170.30.0.0:9090`)
+
+When using `docker-compose`, we can use static address: `http://prometheus:9090`
 
 
 # Setup Server
