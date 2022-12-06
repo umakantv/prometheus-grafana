@@ -33,7 +33,17 @@ scrape_configs:
     # scheme: http
     static_configs:
       - targets:
-          - 'localhost:9090'
+        - 'localhost:9090'
+
+  - job_name: 'grafana_metrics'
+    static_configs:
+      - targets: 
+        - 'grafana:3030'
+
+  - job_name: 'node'
+    static_configs:
+      - targets: 
+        - 'node-exporter:9100'
 
 # Alerting specifies settings related to the Alertmanager.
 alerting:
