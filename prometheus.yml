@@ -1,7 +1,7 @@
 global:
   # How frequently to scrape targets by default.
   # [ scrape_interval: <duration> | default = 1m ]
-  scrape_interval: 1m
+  scrape_interval: 10s
 
   # How long until a scrape request times out.
   # [ scrape_timeout: <duration> | default = 10s ]
@@ -44,6 +44,11 @@ scrape_configs:
     static_configs:
       - targets: 
         - 'node-exporter:9100'
+
+  - job_name: 'fibonacci_api'
+    static_configs:
+      - targets: 
+        - 'fibonacci_api:3010'
 
 # Alerting specifies settings related to the Alertmanager.
 alerting:

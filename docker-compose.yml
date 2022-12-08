@@ -46,3 +46,20 @@ services:
       - 9100
     networks:
       - monitoring
+
+  fibonacci_api:
+    restart: always
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "3010:3010"
+    volumes:
+      # Inside the container, don't override, don't redirect, leave the folder as it it
+      - /app/node_modules
+      # Inside the container, if application tries to access any file inside the app directory
+      # Redirect that to server folder in this directory outside the container
+      # This is useful for 
+      - ./server:/app
+    networks:
+      - monitoring

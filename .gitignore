@@ -3,3 +3,6 @@ data/prometheus
 
 # grafana data director
 data/grafana
+
+# node_modules from nodejs server
+*/node_modules
