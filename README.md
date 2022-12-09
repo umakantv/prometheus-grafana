@@ -1,5 +1,7 @@
 # Prometheus and Grafana for monitoring
 
+![output](assets/dashboard.png)
+
 ## Install Prometheus
 
 ```
