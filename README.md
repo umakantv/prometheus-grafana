@@ -30,7 +30,7 @@ More useful docs for using with docker-compose:
 https://grafana.com/docs/grafana-cloud/quickstart/docker-compose-linux/  
 
 ## Note:  
-> The above two steps can be replace using `docker-compose up -d`.
+> The above two steps can be replaced using `docker-compose up -d`.
 
 
 ### Adding Prometheus as data source
@@ -48,4 +48,6 @@ https://grafana.com/docs/grafana-cloud/data-configuration/integrations/integrati
 https://github.com/siimon/prom-client  
 
 We can import a pre-built dashboard for nodejs processed from here:  
-https://grafana.com/grafana/dashboards/11159-nodejs-application-dashboard/
+https://grafana.com/grafana/dashboards/11159-nodejs-application-dashboard/  
+
+You can also find the JSON Model for the dashboard at `server/nodejs-dashboard`.
