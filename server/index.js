@@ -1,52 +1,12 @@
 const express = require('express');
 const morgan = require('morgan');
-const { collectDefaultMetrics, register, Counter, Gauge } = require('prom-client');
 const { fibonacci, fibonacciSlow } = require('./fibonacci');
-
-collectDefaultMetrics({ 
-    timeout: 5000,
-    // prefix: 'node_app_',
-    labels: {
-        app: 'fibonacci-api'
-    }
-});
+const { metricsServer, updateMetrics } = require('./metrics');
 
 const app = express();
-
-// Customized Http Metrics (Optional)
-const httpMetricsLabelNames = ['method', 'route', 'app'];
-
-const totalHttpRequestCount = new Counter({
-  name: 'nodejs_http_total_count',
-  help: 'Total Requests',
-  labelNames: [...httpMetricsLabelNames, 'code']
-});
-
-const totalHttpRequestDuration = new Gauge({
-  name: 'nodejs_http_total_duration',
-  help: 'Response time of the Last Request',
-  labelNames: httpMetricsLabelNames
-});
-
 app.use(morgan('dev'));
-// app.use(morgan(':remote-addr :remote-user :method :url HTTP/:http-version :status :res[content-length] - :response-time ms'));
 
-
-app.use((req, res, next) => {
-    let startTime = new Date().valueOf();
-    res.addListener('finish', () => {
-        console.log('Route', req.route)
-        // console.log(req.method, req.path, res.statusCode);
-        totalHttpRequestDuration.labels(req.method, req.route.path, 'fibonacci-api').set(new Date().valueOf() - startTime);
-        totalHttpRequestCount.labels(req.method, req.route.path, 'fibonacci-api', res.statusCode).inc();
-    })
-    next();
-})
-
-app.get('/metrics', async (_, res) => {
-    res.setHeader('Content-Type', register.contentType);
-    res.send(await register.metrics());
-})
+app.use(updateMetrics);
 
 app.get('/fibonacci/:num', (req, res) => {
 
@@ -82,6 +42,10 @@ app.get('/fibonacci-slow/:num', (req, res) => {
     res.status(200).send(String(fibonacciSlow(num)));
 })
 
-app.listen(3010, () => {
-    console.log('Listening on http://localhost:3010');
+metricsServer.listen(3010, () => {
+    console.log('Prometheus Metrics server listening on http://localhost:3010');
+})
+
+app.listen(3011, () => {
+    console.log('Fibonacci API Server listening on http://localhost:3011');
 })

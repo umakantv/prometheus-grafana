@@ -54,6 +54,7 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3010:3010"
+      - "3011:3011"
     volumes:
       # Inside the container, don't override, don't redirect, leave the folder as it it
       - /app/node_modules
