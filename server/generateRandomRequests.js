@@ -8,10 +8,10 @@ const definiteCount = Number(process.argv[2])
 
 const config = {
     request: 'random', // change to fibonacci or fibonacci-slow
-    delay: 200, // internal between each subsequent request
-    slowToFastSplitRatio: 1, // increase this to spike the slow requests to say 10
-    slowNumbersRange: [1, 45],
-    fastNumbersRange: [1, 2001],
+    delay: 100, // interval between each subsequent request for continuous traffic
+    slowToFastSplitRatio: 1, // increase this to spike the slow requests to something like 10
+    slowNumbersRange: [20, 42], // adjust the range to control load on server
+    fastNumbersRange: [1, 1500], // all these requests will get resolved within 100 ms unless slow requests are blocking server
 }
 
 function getRequest() {
@@ -57,7 +57,9 @@ async function executeIndefinitely() {
 
         console.log(url)
 
-        axios.get(url).then(res => console.log(res.data)).catch(err => console.log(err.response?.data));
+        await axios.get(url)
+        .then(res => console.log(res.data))
+        .catch(err => console.log(err?.response?.data || 'Something went wrong'));
 
         await sleep(config.delay);
     }
@@ -67,10 +69,12 @@ async function executeCount(count) {
 
     for (let i = 0; i < count; i++) {
         let url = getRequest();
+
         console.log(url)
+
         axios.get(url)
         .then(res => console.log(res.data))
-        .catch(err => console.log(err.response.data))
+        .catch(err => console.log(err?.response?.data || 'Something went wrong'))
         
     }
 }
