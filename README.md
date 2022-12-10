@@ -22,11 +22,12 @@
 3. Use the command `docker-compose up -d` to start the container with all the tools.  
 Grafana should be available at http://localhost:3030  
 The default `username` and `password` both are `admin`.  
+Provisioned datasource and dashboard are already added for you but you can add them manually too.  
 Follow the steps below to [add Prometheus as a data source](#adding-prometheus-as-data-source) inside Grafana.  
-Also follow the steps [to add a nodejs dashboard](#creating-the-dashboard) to Grafana.
+Also follow the steps [to add a nodejs dashboard](#creating-the-dashboard) to Grafana.  
 
 1. Server should be available at http://localhost:3011.  
-Use the steps below to use the script to send traffic to the server.
+Follow the steps below to use the script to send traffic to the server.
 
 
 ## Manual Setup
