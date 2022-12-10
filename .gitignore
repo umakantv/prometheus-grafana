@@ -2,6 +2,8 @@
 data/prometheus
 
 # grafana data director
+!data/grafana/dashboards
+!data/grafana/provisioning
 data/grafana
 
 # node_modules from nodejs server
