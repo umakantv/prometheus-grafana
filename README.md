@@ -10,6 +10,7 @@
   - [Adding Prometheus as data source](#adding-prometheus-as-data-source)
   - [Creating the dashboard](#creating-the-dashboard)
   - [Setup Server](#setup-server)
+  - [Resources](#resources)
 
 
 ## Setup
@@ -111,3 +112,7 @@ To send the unusual amount of traffic, run the script with the number of request
 node generateRandomRequests.js 1000
 ```
 
+## Resources
+
+* [Query Functions](https://prometheus.io/docs/prometheus/latest/querying/functions/#functions)
+* [Histogram & Summaries](https://prometheus.io/docs/practices/histograms/#count-and-sum-of-observations)
