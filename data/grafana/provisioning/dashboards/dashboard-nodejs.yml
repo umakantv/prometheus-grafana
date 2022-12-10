@@ -5,4 +5,4 @@ providers:
     folder: ''
     type: file
     options:
-      path: /var/lib/grafana/dashbaords/nodejs-dashboard.json
+      path: /var/lib/grafana/dashboards
