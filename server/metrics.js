@@ -42,7 +42,7 @@ function updateMetrics(req, res, next) {
     let startTime = new Date().valueOf();
     res.addListener('finish', () => {
         // console.log(req.method, req.route, res.statusCode);
-        let responseTime = (new Date().valueOf() - startTime)/1000; // convert milliseconds to seconds
+        let responseTime = (new Date().valueOf() - startTime); // milliseconds
         totalHttpRequestDuration.labels(req.method, req.route.path, 'fibonacci-api').set(responseTime);
         totalHttpRequestCount.labels(req.method, req.route.path, 'fibonacci-api', res.statusCode).inc();
         httpRequestDurationBuckets.labels(req.method, req.route.path, 'fibonacci-api', res.statusCode).observe(responseTime);
